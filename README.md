@@ -42,4 +42,6 @@ We created the original diagram as part of the paper about, and implementation o
 
 Keet, C.M., Khan, M.T., Ghidini, C. Ontology Authoring with FORZA. 22nd ACM International Conference on Information and Knowledge Management (CIKM'13). ACM proceedings, pp569-578. Oct. 27 - Nov. 1, 2013, San Francisco, USA. https://doi.org/10.1145/2505515.2505539 
 
-The one that D3 uses now has a few questions updated because I found them confusing and I reordered a few things in the binary tree.
+The one that D3 uses now has a few questions updated because I found them confusing and I reordered a few things in the binary tree. The decision tree is now as follows (automatically generated and then rendered with GraphViz for the moment): 
+
+![Revised D3](/D3revisedGraph.png)
