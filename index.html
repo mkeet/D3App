@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DOLCE Decision Diagram</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-head">
+        <h1>DOLCE Decision Diagram</h1>
+        <p class="sub" id="tree-desc">The D3 decision tree to help choose a DOLCE category.</p>
+        <br>
+        <i>Please use the appropriate buttons (hitting 'enter' advances faster than you likely intended)</i>
+      </header>
+
+      <section class="card" id="intro">
+        <label class="field">
+          <span>What are you classifying?</span>
+          <input id="subject" type="text" placeholder="e.g., a house, running, a hole in a wall" autocomplete="off" />
+        </label>
+        <button class="primary" id="start">Start</button>
+        <p class="hint">The term for the entity you provide will be used in each step of the decision tree.</p>
+      </section>
+
+      <section class="card" id="step" hidden>
+        <div class="step-meta">
+          <span class="chip" id="subject-chip"></span>
+          <span class="chip concept" id="concept"></span>
+        </div>
+        <progress id="progress" value="0" max="8"></progress>
+        <h2 class="question" id="question"></h2>
+        <div class="options" id="options"></div>
+        <details class="trail-wrap" id="trail-wrap">
+          <summary>Answered so far</summary>
+          <ol class="trail" id="trail"></ol>
+        </details>
+        <div class="actions">
+          <button id="back">Back</button>
+          <button id="restart">Start over</button>
+        </div>
+      </section>
+
+      <section class="card" id="result" hidden>
+        <p class="eyebrow">Your selected category is</p>
+        <h2 class="category" id="result-category"></h2>
+        <p class="sub" id="result-concept"></p>
+        <p class="subject-line">Classifying: <strong id="result-subject"></strong></p>
+        <h3 class="path-head">Path taken: </h3>
+        <ol class="trail" id="result-path"></ol>
+        <div class="actions">
+          <button id="copy">Copy result</button>
+          <button class="primary" id="again">Classify another</button>
+        </div>
+      </section>
+
+      <section class="card" id="unclassified" hidden>
+        <h2>Not classified</h2>
+        <p class="sub">DOLCE does not recognise the kind of thing you're trying to classify and therefore this decision tree has no branch for the answer you provided. Please go back and either make a different choice or accept that the last visited category is as precise as it can be with DOLCE.</p>
+        <div class="actions">
+          <button class="primary" id="unclassified-back">Go back</button>
+        </div>
+      </section>
+    <br><hr><br>
+    The code: <a href="https://github.com/mkeet/D3App">D3App repo on GitHub</a><br><br>
+    More information about the what, when, and what for of D3 can be found in: <br>
+    Keet, C.M., Khan, M.T., Ghidini, C. <a href="https://doi.org/10.1145/2505515.2505539">Ontology Authoring with FORZA</a>. <i>Proceedings of the 22nd ACM International Conference on Information and Knowledge Management (CIKM'13)</i>. ACM proceedings, pp569-578. Oct. 27 - Nov. 1, 2013, San Francisco, USA.  <br><br>
+    The revised D3 as a diagram:<br><br>
+    <img align="middle" src="D3revisedGraph.png" width="100%" alt="The revised D3 in one view"><br><br>
+    The original D3 as a diagram:<br><br>
+    <img align="middle" src="dolcemodel.jpg" width="100%" alt="The original D3 in one view"><br><br>
+    </main>
+    <script type="module" src="app.js"></script>
+    
+  </body>
+</html>

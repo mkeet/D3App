@@ -1,0 +1,88 @@
+const UNCLASSIFIED = "__unclassified";
+
+const TREE = {
+  meta: {
+    id: "1",
+    title: "DOLCE Decision Diagram v2",
+    description: "The D3 decision tree to help choose a DOLCE category.",
+  },
+
+  nodes: {
+    "1": { kind: "question", concept: "Particular", text: "Is [] wholly present at any time of its existence?",
+      options: [ { label: "Yes", next: "1.1" }, { label: "No", next: "1#1" } ] },
+    "1#1": { kind: "question", concept: "Particular", text: "Is [] something that is happening or occurring?",
+      options: [ { label: "Yes", next: "1.2" }, { label: "No", next: "1#2" } ] },
+    "1#2": { kind: "question", concept: "Particular", text: "Is [] something that can be perceived or measured (like colour, size, smell, etc.)?",
+      options: [ { label: "Yes", next: "1.3" }, { label: "No", next: "1#3" } ] },
+    "1#3": { kind: "question", concept: "Particular", text: "Does [] exist neither in space nor in time, or does so because some other items that are not among its parts occupy that region?",
+      options: [ { label: "Yes", next: "1.4" }, { label: "No", next: "__unclassified" } ] },
+
+    "1.1": { kind: "question", concept: "Endurant", text: "Is [] a collection of things, regardless of their spatial or other differences? (e.g., my laptop + your sock)",
+      options: [ { label: "Yes", next: "1.1.1" }, { label: "No", next: "1.1.2" } ] },
+    "1.1.1": { kind: "result", concept: "Endurant", category: "Arbitrary Sum" },
+    "1.1.2": { kind: "question", concept: "PNPEndurant", text: "Does [] exists on its own, taking up space and mass? (e.g., a cat, a brain)",
+      options: [ { label: "Yes", next: "1.1.2.1" }, { label: "No", next: "1.1.2.2" } ] },  
+    "1.1.2.1": { kind: "question", concept: "Physical Endurant", text: "Is [] something that cannot be counted, or only in specific quantities? (e.g., gold)",
+      options: [ { label: "Yes", next: "1.1.2.1.1" }, { label: "No", next: "1.1.2.1.2" } ] },
+    "1.1.2.1.1": { kind: "result", concept: "Physical Endurant", category: "Amount Of Matter" },      
+    "1.1.2.1.2": { kind: "question", concept: "Physical Endurant", text: "Does [] exist insofar as its host exists, like holes, bumps, or boundaries?",
+      options: [ { label: "Yes", next: "1.1.2.1.2.1" }, { label: "No", next: "1.1.2.1.2.2" } ] },
+    "1.1.2.1.2.1": { kind: "result", concept: "Physical Endurant", category: "Feature" },
+    "1.1.2.1.2.2": { kind: "question", concept: "Physical Object", text: "Does [] have beliefs, desires, and intentions?" ,
+      options: [ { label: "Yes", next: "1.1.2.1.2.2.1" }, { label: "No", next: "1.1.2.1.2.2.2" } ] },
+    "1.1.2.1.2.2.1": { kind: "result", concept: "Physical Object", category: "Agentive Physical Object" },
+    "1.1.2.1.2.2.2": { kind: "result", concept: "Physical Object", category: "Non-Agentive Physical Object" },    
+    "1.1.2.2": { kind: "question", concept: "Non-Physical Endurant", text: "Is [] dependent on a community of agents (i.e., >1) or is it embedded in some social setting?",
+      options: [ { label: "Yes", next: "1.1.2.2.1" }, { label: "No", next: "1.1.2.2.2" } ] },
+    "1.1.2.2.1": { kind: "result", concept: "Non-Physical Endurant", category: "Social Object" },
+    "1.1.2.2.2": { kind: "result", concept: "Non-Physical Endurant", category: "Mental Object" },
+
+    "1.2": { kind: "question", concept: "Perdurant", text: "If you combine two occurrences of [], is it NOT the case that you just have more of the same []? Or, informally: are you able to be present at or participate in []? (e.g., a conference)",
+      options: [ { label: "Yes", next: "1.2.1" }, { label: "No", next: "1.2.2" } ] },
+    "1.2.1": { kind: "question", concept: "Event", text: "Is [] atomic (i.e., has no subdivisions) and [] is or has a clear end point? (e.g., arriving at the top of the Kilimanjaro)",
+      options: [ { label: "Yes", next: "1.2.1.1" }, { label: "No", next: "1.2.1.2" } ] },
+    "1.2.1.1": { kind: "result", concept: "Event", category: "Achievement" },
+    "1.2.1.2": { kind: "result", concept: "Event", category: "Accomplishment" },
+    "1.2.2": { kind: "question", concept: "Stative", text: "Is each time slice of [] the same kind of thing? (e.g., sitting)",
+      options: [ { label: "Yes", next: "1.2.2.1" }, { label: "No", next: "1.2.2.2" } ] },
+    "1.2.2.1": { kind: "result", concept: "Stative", category: "State" },
+    "1.2.2.2": { kind: "result", concept: "Stative", category: "Process" },
+
+    "1.3": { kind: "question", concept: "Quality", text: "Is [] an attribute of a physical object?",
+      options: [ { label: "Yes", next: "1.3.1" }, { label: "No", next: "1.3.2" } ] },
+    "1.3.1": { kind: "question", concept: "Physical Quality", text: "Is [] located in (or: whose value is given within) ordinary spaces, such as geographical coordinates?" ,
+      options: [ { label: "Yes", next: "1.3.1.1" }, { label: "No", next: "__unclassified" } ] },
+    "1.3.1.1": { kind: "result", concept: "Physical Quality", category: "Spatial Location" },   
+    "1.3.2": { kind: "question", concept: "Quality", text: "Is [] an attribute of something that is happening or occurring?",
+      options: [ { label: "Yes", next: "1.3.2.1" }, { label: "No", next: "1.3.2.2" } ] },
+    "1.3.2.1": { kind: "question", concept: "Temporal Quality", text: "Is [] located in (or: whose value is given within) ordinary times, such as a day on the Gregorian calendar?" ,
+       options: [ { label: "Yes", next: "1.3.2.1.1" }, { label: "No", next: "__unclassified" } ] },
+    "1.3.2.1.1": { kind: "result", concept: "Temporal Quality", category: "Temporal Location" },      
+    "1.3.2.2": { kind: "result", concept: "Quality", category: "Abstract Quality" },
+
+    "1.4": { kind: "question", concept: "Abstract", text: "Is [] a collection of well defined objects?",
+      options: [ { label: "Yes", next: "1.4.1" }, { label: "No", next: "1.4#1" } ] },
+    "1.4#1": { kind: "question", concept: "Abstract", text: "Is [] a piece of information about something that exists or has happened?",
+      options: [ { label: "Yes", next: "1.4.2" }, { label: "No", next: "1.4#2" } ] },
+    "1.4#2": { kind: "question", concept: "Abstract", text: "Is [] a location of or occupied by some object?",
+      options: [ { label: "Yes", next: "1.4.3" }, { label: "No", next: "__unclassified" } ] },
+    "1.4.1": { kind: "result", concept: "Abstract", category: "Set" },
+    "1.4.2": { kind: "result", concept: "Abstract", category: "Fact" },
+    "1.4.3": { kind: "question", concept: "Region", text: "Can only physical qualities (attributes) of physical objects be located in this region?",
+     options: [ { label: "Yes", next: "1.4.3.1" }, { label: "No", next: "1.4.3#1" } ] },
+    "1.4.3.1": { kind: "question", concept: "Physical Region", text: "Is [] an ordinary space, be it geographical, cosmological, topographic?",    
+     options: [ { label: "Yes", next: "1.4.3.1.1" }, { label: "No", next: "__unclassified" } ] },    
+    "1.4.3.1.1": { kind: "result", concept: "Physical Region", category: "Space Region" },       
+    "1.4.3#1": { kind: "question", concept: "Region", text: "Can only temporal qualities (attributes) of events, states, or processes be located in this region?",  
+     options: [ { label: "Yes", next: "1.4.3.2" }, { label: "No", next: "1.4.3.3" } ] },     
+    "1.4.3.2": { kind: "question", concept: "Temporal Region", text: "Is [] measured in, e.g., seconds or days?" ,     
+    options: [ { label: "Yes", next: "1.4.3.2.1" }, { label: "No", next: "__unclassified" } ] },    
+    "1.4.3.2.1": { kind: "result", concept: "Temporal Region", category: "Time Interval" },     
+    "1.4.3.3": { kind: "result", concept: "Region", category: "Abstract Region" },          
+
+  },
+};
+
+for (const [id, node] of Object.entries(TREE.nodes)) node.id = id;
+
+export { TREE, UNCLASSIFIED };
