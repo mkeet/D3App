@@ -4,6 +4,8 @@ This repository contains a two variants of D3, the DOLCE Decision Diagram, as a 
 
 The latest version is available here: http://www.meteck.org/sw/D3App/index.html
 
+I vibe-coded first and then made numerous changes to fix and otherwise change things. It's still brittle; see 'features', below.
+
 ## To run it locally
 
 To run it locally on your machine and you don't have GitHub and the like, first download the repo as a zip file, and unzip it on your machine. 
@@ -30,6 +32,8 @@ and start as you like.
 - There's a progress bar 
 
 There are no bugs, but it has only a limited feature set. Among others: 
+- The HTML page only renders nicely in light mode, not in dark mode.
+- Preferably, use the buttons to interact with the app. It's possible to do so hitting enter, but the visual feedback is then less obvious.
 - Once at a leaf node, there's no back button and you'll have to start over if you don't like aligning to the leaf entity.
 - The 'choice among 3-4 alternatives' has been squashed into a series of yes/no questions, adding one more temp node that D3 already had.
 - You can't load your ontology to make selecting the class easier.
@@ -38,7 +42,7 @@ If you want these sort of features, and actually rather align to BFO instead: th
 
 ## How to cite D3 
 
-We created the original diagram as part of the paper about, and implementation of, the FORZA method and even though the treeExtended.js version in this repository has an extension and some rewording, it's too minor to count as substantive, so please cite that paper:
+We created the original D3 as part of the paper about, and implementation of, the FORZA method and even though the treeExtended.js version in this repository has an extension and some rewording, it's too minor to count as substantive, so please cite the FORZA paper:
 
 Keet, C.M., Khan, M.T., Ghidini, C. Ontology Authoring with FORZA. 22nd ACM International Conference on Information and Knowledge Management (CIKM'13). ACM proceedings, pp569-578. Oct. 27 - Nov. 1, 2013, San Francisco, USA. https://doi.org/10.1145/2505515.2505539 
 
